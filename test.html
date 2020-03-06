@@ -1,0 +1,67 @@
+
+<html>
+  <head>
+    <title>STOP Touching Your Face</title>
+    <style>
+      body {
+        width: 300px;
+        height: 400px;
+      }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="popup.css">
+  <script type="text/javascript">
+
+  // Setup webcam
+  async function setupCam() {
+    navigator.mediaDevices.getUserMedia({
+      video: true
+    }).then(mediaStream => {
+      vid.srcObject = mediaStream;
+    }).catch((error) => {
+      console.warn(error);
+    });
+  }
+
+
+  document.getElementById("vidOff").onclick = function() {
+    //vidOff()
+    console.log("hello off")
+    vid.pause();
+    vid.src = "";
+    stopStreamedVideo(vid)
+
+  }
+
+
+  document.getElementById("vidOn").onclick = function() {
+    //vidOff()
+    console.log("hello on")
+    setupCam();
+
+  }
+
+
+
+  </script>
+  </head>
+  <body>
+    <div class="container">
+    <img src="stop-sign-hand-512.png" height="50" width="50">
+    <p>Stop Touching Your Face!</p>
+    <div>
+      <video autoplay="true" id="webcamVideo" width="227" height ="227"></video>
+    </div>
+    <button id="vidOff">vidOff!</button><br>
+    <button id="vidOn">vidOn!</button><br>
+    <div class="settings-container">
+                    <label class="switch">
+                    <input id="active-option" type="checkbox" checked="true">
+                    <span class="slider round"></span>
+                    </label>
+                </div>
+  </div>
+
+
+  </body>
+</html>

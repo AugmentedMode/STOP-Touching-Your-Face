@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "STOP Touching Your Face",
+  "description": "This extension sends a user a notification when they touch their face.",
+  "version": "1.0",
+  "browser_action": {
+   "default_icon": "stop-sign-hand-512.png",
+   "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "<all_urls>"
+   ]
+}

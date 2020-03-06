@@ -1,0 +1,36 @@
+
+<html>
+  <head>
+    <title>STOP Touching Your Face</title>
+    <style>
+      body {
+        width: 300px;
+        height: 400px;
+      }
+  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <div class="container">
+    <img src="stop-sign-hand-512.png" height="50" width="50">
+    <p>Stop Touching Your Face!</p>
+    <div>
+      <video autoplay="true" id="webcamVideo" width="227" height ="227"></video>
+    </div>
+
+
+    <div class="settings-container">
+                    <label class="switch">
+                    <input id="active-option" type="checkbox" checked="true">
+                    <span class="slider round"></span>
+                    </label>
+                </div>
+  </div>
+  <script src="popup.js"></script>
+  <script src="test.js"></script>
+  <script src="background.js"></script>
+  <script src="content.js"></script>
+
+  </body>
+</html>
