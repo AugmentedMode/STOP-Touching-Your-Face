@@ -1,16 +1,3 @@
-/*function setupCam() {
-  navigator.mediaDevices.getUserMedia({
-    video: true
-  }).then(mediaStream => {
-    document.querySelector('#webcamVideo').srcObject = mediaStream;
-  }).catch((error) => {
-    console.warn(error);
-  });
-}
-
-setupCam();*/
-
-
 
 document.addEventListener('DOMContentLoaded', function(){
     var activeElement = document.getElementById("active-option");

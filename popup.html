@@ -1,36 +1,54 @@
-
 <html>
-  <head>
-    <title>STOP Touching Your Face</title>
-    <style>
-      body {
-        width: 300px;
-        height: 400px;
-      }
+
+<head>
+  <title>STOP Touching Your Face</title>
+  <style>
+    body {
+      width: 340px;
+      height: 400px;
+    }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="popup.css">
-  </head>
-  <body>
-    <div class="container">
-    <img src="stop-sign-hand-512.png" height="50" width="50">
-    <p>Stop Touching Your Face!</p>
-    <div>
-      <video autoplay="true" id="webcamVideo" width="227" height ="227"></video>
-    </div>
+</head>
 
-
-    <div class="settings-container">
-                    <label class="switch">
-                    <input id="active-option" type="checkbox" checked="true">
-                    <span class="slider round"></span>
-                    </label>
-                </div>
+<body>
+  <div class="card-header">
+    <img class="logo" src="stop-sign-hand-512.png" height="35" width="35">
+    <h1 class="title">Stop Touching Your Face!</h1>
   </div>
+
+  <ul class="list-group list-group-flush">
+
+    <li class="list-group-item">
+      <div style="text-align:center;">
+        <video autoplay="true" id="webcamVideo" width="227" height="227"></video>
+      </div>
+
+    </li>
+
+    <li class="list-group-item">
+      <p class="toggle-text">Turn Webcam On/Off</p>
+      <div class="settings-container">
+        <label class="switch">
+          <input id="active-option" type="checkbox" checked="true">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </li>
+
+
+
+  </ul>
+  <div class="card-footer">
+      <p class="donate-text">Like the app? Donate!</p>
+      <a class="donate"href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WMQTLSU3CKDXC&source=url" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"></img></a>
+  </div>
+
   <script src="popup.js"></script>
-  <script src="test.js"></script>
   <script src="background.js"></script>
   <script src="content.js"></script>
 
-  </body>
+</body>
+
 </html>
