@@ -13,6 +13,13 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 let time_betweeen = 15000;
 
+const messages = ["Hey there, remember to try and not touch your face!",
+                 "Touching your face can spread dirt, oil, and bacteria from your hands to your face.",
+                 "It is estimated that people touch their faces about 23 times per hour! Let's bring that number down.",
+                 "Would you put your face on the last thing you touched?",
+                 "The best way to prevent infections is to stop touching your face!",
+                 "Hey, remember to wash your hands several times throughout the day!"]
+
 
 // set global vid variable
 const vid = document.querySelector('#webcamVideo');
@@ -35,13 +42,15 @@ function millisToMinutesAndSeconds(millis) {
 // function to clear all notifications and send new notification
 function sendNotification(current_time) {
   //console.log('send notification')
+  var message_ = messages[Math.floor(Math.random() * messages.length)]
+
   chrome.notifications.clear('stop-touching-1');
   chrome.notifications.create(
     'stop-touching-1', {
       type: 'basic',
       iconUrl: 'new-logo.png',
-      title: "Stop touching your face!",
-      message: "Hey there, remember to try and not touch your face!"
+      title: "STOP Touching Your Face!",
+      message: message_
 
     });
   last_notification = current_time
@@ -80,8 +89,8 @@ function stopStreamedVideo(videoStream) {
 
 // function to setup tensorflow.js model
 async function setupClassifier(vid) {
-  const modelURL = URL + "model.json";
-  const metadataURL = URL + "metadata.json";
+  const modelURL = "/model.json";//URL + "model.json"; //"model.json";
+  const metadataURL = "/metadata.json";//URL + "metadata.json"; //"metadata.json";
 
   // load the model and metadata
   model = await tmImage.load(modelURL, metadataURL);
