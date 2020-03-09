@@ -29,9 +29,9 @@ function millisToMinutesAndSeconds(millis) {
 
 function sendNotification(current_time) {
   console.log('send notification')
-
+  chrome.notifications.clear('stop-touching-1');
   chrome.notifications.create(
-  'name-for-notification',{
+  'stop-touching-1',{
   type: 'basic',
   iconUrl: 'stop-sign-hand-512.png',
   title: "Stop touching your face!",
