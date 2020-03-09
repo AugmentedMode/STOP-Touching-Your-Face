@@ -33,7 +33,7 @@ function sendNotification(current_time) {
   chrome.notifications.create(
   'stop-touching-1',{
   type: 'basic',
-  iconUrl: 'stop-sign-hand-512.png',
+  iconUrl: 'new-logo.png',
   title: "Stop touching your face!",
   message: "Hey there, remember to try and not touch your face!"
 
