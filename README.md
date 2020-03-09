@@ -14,6 +14,6 @@ TODO:
 3) get new image of application for chrome store
 
 🚀 Features to come: <br>
-  ⭐️ add feature where a user can select how long until the extension can send another notification <br>
-  ⭐️ add feature where a user can set a schedule of when they want the application running - school/work hours? <br> 
-  ⭐️ add low battery mode - send out notifications periodically without turning on cam
+  &nbsp;&nbsp;&nbsp;⭐️ add feature where a user can select how long until the extension can send another notification <br>
+  &nbsp;&nbsp;&nbsp;⭐️ add feature where a user can set a schedule of when they want the application running - school/work hours? <br> 
+  &nbsp;&nbsp;&nbsp;⭐️ add low battery mode - send out notifications periodically without turning on cam
