@@ -13,9 +13,7 @@ It makes use of a tensorflow.js image classifier. In doing so, your webcam image
   &nbsp;&nbsp;&nbsp;⭐️ Better image classifier <br>
   &nbsp;&nbsp;&nbsp;⭐️ Add more notification messages (pick from random) <br>
   &nbsp;&nbsp;&nbsp;⭐️ Store statistics - longest duration of not touching face while on, # of times face was touched, ect...<br>
-  &nbsp;&nbsp;&nbsp;⭐️ add feature where a user can select how long until the extension can send another notification <br>
   &nbsp;&nbsp;&nbsp;⭐️ add feature where a user can set a schedule of when they want the application running - school/work hours? <br>
   &nbsp;&nbsp;&nbsp;⭐️ add low battery mode - send out notifications periodically without turning on cam <br><br>
-  
-  ![alt text](https://github.com/AugmentedMode/stop-touching-your-face/blob/master/extension-example-1280-800.png)
 
+  ![alt text](https://github.com/AugmentedMode/stop-touching-your-face/blob/master/extension-example-1280-800.png)

@@ -11,6 +11,9 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+let time_betweeen = 15000;
+
+
 // set global vid variable
 const vid = document.querySelector('#webcamVideo');
 
@@ -86,6 +89,25 @@ async function setupClassifier(vid) {
 
   // loop to loop over images in webcam to predict if touching face
   // until vid stream is stopped
+
+  chrome.storage.sync.get(['time-between'], function (result){
+      console.log(result['time-between'])
+      if(result['time-between'] === '1')
+      {
+          time_betweeen = 15000;
+      }else if (result['time-between'] === '2') {
+        time_betweeen = 60000;
+      }
+      else if (result['time-between'] === '3') {
+        time_betweeen = 300000;
+      }
+      else if (result['time-between'] === '4') {
+        time_betweeen = 1800000;
+      }
+      else if (result['time-between'] === '5') {
+        time_betweeen = 3600000;
+      }
+  });
   while (vid.srcObject != null) {
     await predict(vid);
 
@@ -108,11 +130,11 @@ async function predict(vid) {
       var diffInMillis = current_time - last_notification;
 
       // log time in seconds till next notification
-      //console.log(millisToMinutesAndSeconds(diffInMillis))
+      console.log(millisToMinutesAndSeconds(diffInMillis))
 
 
       // if it has been more than 15 seconds or if there is no last notification
-      if (diffInMillis > 15000 || last_notification == null) {
+      if (diffInMillis > time_betweeen || last_notification == null) {
         // send notification to user and update last-notification
         sendNotification(current_time);
 

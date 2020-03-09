@@ -14,6 +14,27 @@ document.addEventListener('DOMContentLoaded', function(){
             activeElement.checked = true;
         }
     });
+
+    chrome.storage.sync.get(['time-between'], function (result){
+        console.log(result['time-between'])
+        if(result['time-between'] === '1')
+        {
+            document.querySelector('#sel [value="' + 1 + '"]').selected = true;
+        }else if (result['time-between'] === '2') {
+          document.querySelector('#sel [value="' + 2 + '"]').selected = true;
+        }
+        else if (result['time-between'] === '3') {
+          document.querySelector('#sel [value="' + 3 + '"]').selected = true;
+        }
+        else if (result['time-between'] === '4') {
+          document.querySelector('#sel [value="' + 4 + '"]').selected = true;
+        }
+        else if (result['time-between'] === '5') {
+          document.querySelector('#sel [value="' + 5 + '"]').selected = true;
+        }
+    });
+
+
     // on lick of switch
     activeElement.onclick = function(){
         let selection = this.checked + "";
@@ -32,3 +53,19 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     }
 })
+
+//////////////////////////////////////////////////////////////////////
+
+
+
+    document.getElementById("sel").addEventListener("change", myFunction);
+
+    function myFunction() {
+      var e = document.getElementById("sel");
+      var strUser = e.options[e.selectedIndex].value;
+      //console.log(strUser)
+      var val = strUser;
+      //document.querySelector('#sel [value="' + val + '"]').selected = true;
+      console.log(val)
+      chrome.storage.sync.set({'time-between' : val});
+    }
