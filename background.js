@@ -18,7 +18,30 @@ const vid = document.querySelector('#webcamVideo');
 const URL = "https://teachablemachine.withgoogle.com/models/wSHx_7N3/";
 
 let model, labelContainer, maxPredictions;
+ var last_notification = null
 //const vid = document.querySelector('#webcamVideo');
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
+function sendNotification(current_time) {
+  console.log('send notification')
+
+  chrome.notifications.create(
+  'name-for-notification',{
+  type: 'basic',
+  iconUrl: 'stop-sign-hand-512.png',
+  title: "Stop touching your face!",
+  message: "Hey there, remember to try and not touch your face!"
+
+  });
+  last_notification = current_time
+  //chrome.storage.sync.set({'last-notification' : current_time});
+
+}
 
 
 
@@ -71,7 +94,6 @@ async function setupClassifier(vid) {
 
   while (vid.srcObject != null) {
     await predict(vid);
-    console.log('in loop')
 
     // need to set yes_loop to false here
 
@@ -104,13 +126,51 @@ async function loop() {
 async function predict(vid) {
     // predict can take in an image, video or canvas html element
     const prediction = await model.predict(vid);
-    for (let i = 0; i < maxPredictions; i++) {
+    //for (let i = 0; i < maxPredictions; i++) {
         const classPrediction =
-            prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            console.log(classPrediction)
+            prediction[0].className + ": " + prediction[0].probability.toFixed(2);
+          //  console.log(classPrediction)
         //labelContainer.childNodes[i].innerHTML = classPrediction;
 
-    }
+          if (prediction[0].className == 'touching-face') {
+            // if prediiction is greater than 90 of touching face - send notification
+            if (prediction[0].probability.toFixed(2) >= .90) {
+              console.log('over 90')
+
+                //chrome.storage.sync.get(['last-notification'], function (result){
+
+                  var date = new Date();
+                  var current_time = date.getTime();
+                  var diffInMillis =  current_time - last_notification;
+
+                  console.log(millisToMinutesAndSeconds(diffInMillis))
+
+
+
+                    if(diffInMillis > 15000 || last_notification == null)
+                    {
+
+                      sendNotification(current_time);
+
+
+                    } else {
+                      console.log('dont send notifcation')
+                    }
+
+            //  });
+
+
+
+
+        }
+
+  }
+
+
+
+
+
+  //  }
 }
 
 
@@ -122,12 +182,12 @@ chrome.storage.local.get('camAccess', items => {
   chrome.storage.sync.get(['GDDM-active'], function (result){
       if(result['GDDM-active'] == "false")
       {
-          console.log('helllo im false');
           vid.pause();
           vid.src = "";
+          console.log('stop stream')
           stopStreamedVideo(vid);
+          console.log('stream stopped')
       }else{
-        console.log('helllo im true');
         //if (!!items['camAccess']) {
         if (!!items['camAccess']) {
   console.log('cam access already exists');
@@ -146,12 +206,12 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   chrome.storage.sync.get(['GDDM-active'], function (result){
       if(result['GDDM-active'] == "false")
       {
-          console.log('helllo im false');
           vid.pause();
           vid.src = "";
+          console.log('stop stream')
           stopStreamedVideo(vid);
+          console.log('stream stopped')
       }else{
-        console.log('helllo im true');
         //if ('camAccess' in changes) {
           //console.log('cam access grantedddd');
     console.log('cam access granted');
