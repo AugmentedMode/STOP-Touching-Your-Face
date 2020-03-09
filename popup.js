@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function(){
     chrome.storage.sync.get(['GDDM-active'], function (result){
         if(result['GDDM-active'] === "false")
         {
-            console.log('helllo im false');
+            //console.log('helllo im false');
             activeElement.checked = false;
         }else{
-          console.log('helllo im false');
+          //console.log('helllo im false');
             activeElement.checked = true;
         }
     });
@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', function(){
         if(this.checked){
             // checked == true
             chrome.storage.sync.set({'GDDM-active' : selection});
+
         }else{
             // else false
             chrome.storage.sync.set({'GDDM-active' : selection});
+
         }
         chrome.tabs.query({currentWindow: true, active: true},
             function(tabs) {
