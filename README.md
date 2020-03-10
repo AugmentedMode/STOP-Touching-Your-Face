@@ -9,6 +9,13 @@ Check out the code at https://github.com/AugmentedMode/stop-touching-your-face
 It makes use of a tensorflow.js image classifier. In doing so, your webcam images are processed locally on your machine and at no time is any information collected or sent externally.
 
 
+
+🚀 Features: <br>
+  &nbsp;&nbsp;&nbsp;⭐️ Better image classifier <br>
+  &nbsp;&nbsp;&nbsp;⭐️ Add more notification messages (pick from random) <br>
+  &nbsp;&nbsp;&nbsp;⭐️ add low battery mode - send out notifications periodically without turning on cam <br><br>
+
+
 🚀 What's to come: <br>
   &nbsp;&nbsp;&nbsp;⭐️ Better image classifier <br>
   &nbsp;&nbsp;&nbsp;⭐️ Add more notification messages (pick from random) <br>

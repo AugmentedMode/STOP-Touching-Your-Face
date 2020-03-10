@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     // get data from on/off switch
     var activeElement = document.getElementById("active-option");
+    var lowPower = document.getElementById("low_power");
 
     // get data to see if element is on or off
     chrome.storage.sync.get(['GDDM-active'], function (result){
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function(){
             activeElement.checked = true;
         }
     });
+
 
     chrome.storage.sync.get(['time-between'], function (result){
         console.log(result['time-between'])
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 chrome.tabs.sendMessage(tabs[0].id, selection);
         })
     }
+
 })
 
 //////////////////////////////////////////////////////////////////////

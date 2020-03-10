@@ -14,11 +14,12 @@ chrome.runtime.onInstalled.addListener((details) => {
 let time_betweeen = 15000;
 
 const messages = ["Hey there, remember to try and not touch your face!",
-                 "Touching your face can spread dirt, oil, and bacteria from your hands to your face.",
-                 "It is estimated that people touch their faces about 23 times per hour! Let's bring that number down.",
-                 "Would you put your face on the last thing you touched?",
-                 "The best way to prevent infections is to stop touching your face!",
-                 "Hey, remember to wash your hands several times throughout the day!"]
+  "Touching your face can spread dirt, oil, and bacteria from your hands to your face.",
+  "Did you know that on average people touch their faces around 23 times per hour!",
+  "Would you put your face on the last thing you touched?",
+  "The best way to prevent infections is to stop touching your face!",
+  "Hey, remember to wash your hands several times throughout the day!"
+]
 
 
 // set global vid variable
@@ -86,11 +87,42 @@ function stopStreamedVideo(videoStream) {
   }
 }
 
+function stop(timer) {
+  if (timer) {
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function lowPowerMode() {
+  var date = new Date();
+  var current_hour = date.getHours();
+
+  if (current_hour >= 7 && current_hour <= 17) {
+      timeout1 = setTimeout(function() {
+        //console.log(("Hello"))
+      }, 7200000);
+      timeout2 = setTimeout(function() {
+        //console.log(("Hello"))
+      }, 14400000);
+
+      if (current_hour <= 13){
+        timeout3 = setTimeout(function() {
+          //console.log(("Hello"))
+        }, 21600000);
+          return [timeout1, timeout2, timeout3];
+      }
+
+      return [timeout1, timeout2];
+
+  }
+}
+
 
 // function to setup tensorflow.js model
 async function setupClassifier(vid) {
-  const modelURL = "/model.json";//URL + "model.json"; //"model.json";
-  const metadataURL = "/metadata.json";//URL + "metadata.json"; //"metadata.json";
+  const modelURL = "/model.json"; //URL + "model.json"; //"model.json";
+  const metadataURL = "/metadata.json"; //URL + "metadata.json"; //"metadata.json";
 
   // load the model and metadata
   model = await tmImage.load(modelURL, metadataURL);
@@ -99,23 +131,18 @@ async function setupClassifier(vid) {
   // loop to loop over images in webcam to predict if touching face
   // until vid stream is stopped
 
-  chrome.storage.sync.get(['time-between'], function (result){
-      console.log(result['time-between'])
-      if(result['time-between'] === '1')
-      {
-          time_betweeen = 15000;
-      }else if (result['time-between'] === '2') {
-        time_betweeen = 60000;
-      }
-      else if (result['time-between'] === '3') {
-        time_betweeen = 300000;
-      }
-      else if (result['time-between'] === '4') {
-        time_betweeen = 1800000;
-      }
-      else if (result['time-between'] === '5') {
-        time_betweeen = 3600000;
-      }
+  chrome.storage.sync.get(['time-between'], function(result) {
+    if (result['time-between'] === '1') {
+      time_betweeen = 15000;
+    } else if (result['time-between'] === '2') {
+      time_betweeen = 60000;
+    } else if (result['time-between'] === '3') {
+      time_betweeen = 300000;
+    } else if (result['time-between'] === '4') {
+      time_betweeen = 1800000;
+    } else if (result['time-between'] === '5') {
+      time_betweeen = 3600000;
+    }
   });
   while (vid.srcObject != null) {
     await predict(vid);
@@ -165,11 +192,22 @@ chrome.storage.local.get('camAccess', items => {
       vid.pause();
       vid.src = "";
       stopStreamedVideo(vid);
+      console.log('low power mode');
+      values = lowPowerMode();
     } else {
       //if (!!items['camAccess']) {
       if (!!items['camAccess']) {
         console.log('cam access already exists');
         setupCam();
+
+        timeout1 = values[0];
+        timeout2 = values[1];
+        stop(timeout1);
+        stop(timeout2);
+        if (values.length == 3) {
+          timeout3 = values[2];
+          stop(timeout3);
+        }
       }
       //}
     }
@@ -185,11 +223,22 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
       vid.pause();
       vid.src = "";
       stopStreamedVideo(vid);
+      console.log('low power mode');
+      values = lowPowerMode();
     } else {
       //if ('camAccess' in changes) {
       //console.log('cam access grantedddd');
       console.log('cam access granted');
       setupCam();
+
+      timeout1 = values[0];
+      timeout2 = values[1];
+      stop(timeout1);
+      stop(timeout2);
+      if (values.length == 3) {
+        timeout3 = values[2];
+        stop(timeout3);
+      }
 
     }
     //}
