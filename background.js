@@ -115,6 +115,8 @@ function lowPowerMode() {
 
       return [timeout1, timeout2];
 
+  } else {
+    return [];
   }
 }
 
@@ -199,15 +201,20 @@ chrome.storage.local.get('camAccess', items => {
       if (!!items['camAccess']) {
         console.log('cam access already exists');
         setupCam();
-
+        try {
+        if (values.length > 1) {
         timeout1 = values[0];
         timeout2 = values[1];
         stop(timeout1);
         stop(timeout2);
+      }
         if (values.length == 3) {
           timeout3 = values[2];
           stop(timeout3);
         }
+      }catch(err) {
+    console.log('on startup')
+  }
       }
       //}
     }
@@ -230,15 +237,22 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
       //console.log('cam access grantedddd');
       console.log('cam access granted');
       setupCam();
+      try {
+      if (values.length > 1) {
 
       timeout1 = values[0];
       timeout2 = values[1];
       stop(timeout1);
       stop(timeout2);
+
+    }
       if (values.length == 3) {
         timeout3 = values[2];
         stop(timeout3);
       }
+    }catch(err) {
+  console.log('on startup')
+}
 
     }
     //}
