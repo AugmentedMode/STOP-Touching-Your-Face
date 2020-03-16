@@ -1,17 +1,44 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/welcome.css">
 
-  </head>
-  <body>
-    <div class="container">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/welcome.css">
+
+</head>
+
+<body>
+  <nav class="navbar navbar" style="background-color: #0a192f;">
+    <p class="welcome-text" style="font-size:110%;">
+      <img src="new-logo.png" width="50" height="50" alt="">
+      &nbsp;&nbsp;STOP Touching Your Face!
+    </p>
+  </nav>
+  <div class="container">
+    <div class="row"  style="padding-top:25px;">
+      <div class="col text-center">
+      <h3 class="font-headliner2" style="padding-left:0px;">Please grant the browser access to the webcam to use this extension</h3>
+      <h4 class="font-headliner2">At no time is any information collected or sent externally.</h3>
+      <div style="color: #FF4136;" id="status"></div>
+    </div>
+
+    </div>
+    <div class="row" style="padding-top:100px;">
+      <div class="col">
+        <h1 class="welcome-intro" style="padding-top:30px;">Thank you for downloading</h1>
+        <h1 class="welcome-intro"> <span style="color: #FF4136;">STOP </span> Touching Your Face!</h1>
+        <br>
+        <p class="welcome-text">This Chrome extension sends you a notification when you touch your face to help stop the spread of bacteria and viruses.</p>
+        <p class="welcome-text">In doing so, your webcam images are <span style="color: #FF4136;">processed locally</span> on your machine and at <span style="color: #FF4136;">no time</span> is any information collected or sent externally.</p>
+      </div>
+      <div class="col">
+        <img src="new-example.png" height="340" width="535" class="welcone-image">
+      </div>
+    </div>
+
+  </div>
+    <script src="welcome.js"></script>
 
 
-<h3 class="font-color">Please grant the browser access to the webcam to use this extension</h3>
-<div class="font-color" id="status"></div>
-</div>
-<script src="welcome.js"></script>
 </body>
 
 </html>

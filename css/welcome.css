@@ -1,8 +1,22 @@
 body {
-    background-color: #0d2438;
+    background-color: #0a192f;
   }
 
 
 .font-color {
-  color: #b0b8bf;
+  color: #e6f1ff;
+}
+
+.welcome-intro {
+  color:#e6f1ff;
+  font-size: 200%;
+}
+
+.welcome-text {
+  color:#e6f1ff;
+}
+
+.font-headliner2 {
+  color: #64ffda;
+  font-size: 150%;
 }
