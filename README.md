@@ -1,6 +1,6 @@
 # STOP Touching Your Face
 
-This extension sends you a notification when you touch your face to help stop the spread of bacteria and viruses.
+This extension sends you a notification when you touch your face to help prevent the spread of bacteria and viruses.
 
 STOP Touching Your Face is an open-source Chrome extension that uses your webcam and tensorflow.js to send you a notification when you touch your face. In doing so, your webcam images are processed locally on your machine and at no time is any information collected or sent externally.
 
