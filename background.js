@@ -27,7 +27,7 @@ const vid = document.querySelector('#webcamVideo');
 
 
 // the link to your model provided by Teachable Machine export panel
-const URL = "https://teachablemachine.withgoogle.com/models/wSHx_7N3/";
+const URL = "https://teachablemachine.withgoogle.com/models/-L0k6LxU/";
 
 let model, labelContainer, maxPredictions;
 // variable to store when last notification was sent
