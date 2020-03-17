@@ -19,7 +19,7 @@ TODO: need to fix error where you turn on low battery mode outside of hour range
 🚀 What's to come: <br>
   &nbsp;&nbsp;&nbsp;&nbsp;⭐️ Further improve image classifier <br>
   &nbsp;&nbsp;&nbsp;&nbsp;⭐️ Store statistics - longest duration of not touching face while on, # of times face was touched, ect...<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;⭐️ add feature where a user can set a schedule of when they want the application running - possibily during school/work hours? <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;⭐️ Add a scheduler for when the webcam is on - possibily during school/work hours? <br>
 
 
   ![alt text](https://github.com/AugmentedMode/stop-touching-your-face/blob/master/new-example.png)
